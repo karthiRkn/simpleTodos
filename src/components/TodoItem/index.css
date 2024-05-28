@@ -1,0 +1,12 @@
+.user-details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+li {
+  list-style: none;
+}
+.user-card-container {
+  width: 50%;
+  background-color: #fff;
+}
