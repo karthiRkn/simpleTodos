@@ -1,5 +1,9 @@
+
 import {Component} from 'react'
-import UserProfileItem from '../TodoItem'
+
+import TodoItem from '../TodoItem'
+
+import './index.css'
 
 const initialTodosList = [
   {
@@ -35,37 +39,41 @@ const initialTodosList = [
     title: 'Get essentials for Sunday car wash',
   },
 ]
-class Apps extends Component {
+
+class SimpleTodos extends Component {
   state = {
-    usersDetailsList: initialTodosList,
+    todosList: initialTodosList,
   }
 
-  deleteUser = id => {
-    const {usersDetailsList} = this.state
-    const filteredUsersData = usersDetailsList.filter(each => each.id !== id)
+  deleteTodo = id => {
+    const {todosList} = this.state
+    const updatedTodosList = todosList.filter(eachTodo => eachTodo.id !== id)
+
     this.setState({
-      usersDetailsList: filteredUsersData,
+      todosList: updatedTodosList,
     })
   }
 
   render() {
-    const {usersDetailsList} = this.state
+    const {todosList} = this.state
 
     return (
       <div className="app-container">
-        <h1 className="title">Simple Todos</h1>
-        <ul className="list-container">
-          {usersDetailsList.map(eachUser => (
-            <UserProfileItem
-              userDetails={eachUser}
-              key={eachUser.id}
-              deleteUser={this.deleteUser}
-            />
-          ))}
-        </ul>
+        <div className="simple-todos-container">
+          <h1 className="heading">Simple Todos</h1>
+          <ul className="todos-list">
+            {todosList.map(eachTodo => (
+              <TodoItem
+                key={eachTodo.id}
+                todoDetails={eachTodo}
+                deleteTodo={this.deleteTodo}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
     )
   }
 }
 
-export default Apps
+export default SimpleTodos
